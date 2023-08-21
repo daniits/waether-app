@@ -4,7 +4,7 @@ import { BsSearch } from 'react-icons/bs'
 const SearchForm = ({ city, setCity, loading, fetchWeatherData }) => (
   <div className="relative flex justify-between items-center max-w-[500px] w-full m-auto pt-4 text-white z-10 ">
     <form
-      className="flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-300 text-white rounded-2xl"
+      className="relative flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-300 text-white rounded-2xl"
       onSubmit={fetchWeatherData}
     >
       <div>
@@ -16,7 +16,7 @@ const SearchForm = ({ city, setCity, loading, fetchWeatherData }) => (
           placeholder="Enter city name"
         />
       </div>
-      <button type="submit" disabled={loading}>
+      <button className='absolute right-[10px]' type="submit" disabled={loading}>
         {loading ? 'Loading...' : <BsSearch size={20} />}
       </button>
     </form>
