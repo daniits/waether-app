@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { BsSearch } from 'react-icons/bs'
-import Image from 'next/image'
 import Meta from '../src/Components/Header/Meta'
 import WeatherDetails from '../src/Components/Card/WeatherDetails'
 import { useSelector, useDispatch } from 'react-redux'
@@ -11,7 +9,7 @@ import SearchForm from '../src/Components/SearchForm'
 
 export default function Home() {
   const [city, setCity] = useState('')
-  const [geoError, setGeoError] = useState(null);
+  const [geoError, setGeoError] = useState(null)
   const { weather, loading, error } = useSelector((state) => state.weather)
   const dispatch = useDispatch()
 
@@ -20,9 +18,6 @@ export default function Home() {
     dispatch(fetchWeatherByCoordinatesAction(lat, lon))
   }
 
-
-  
-
   // Function to fetch user's current location
   const fetchUserLocation = () => {
     if (navigator.geolocation) {
@@ -30,13 +25,12 @@ export default function Home() {
         fetchWeatherByCoordinates(
           position.coords.latitude,
           position.coords.longitude,
-        );
-      });
+        )
+      })
     } else {
-      setGeoError('Geolocation is not supported by this browser.');
+      setGeoError('Geolocation is not supported by this browser.')
     }
-  };
-  
+  }
 
   // Fetch user location on component mount
   useEffect(() => {
@@ -60,9 +54,9 @@ export default function Home() {
         loading={loading}
         fetchWeatherData={fetchWeatherData}
       />
-      <div className='relative w-[100%] justify-center flex text-2xl text-red-500 mt-2'>
-      {error && <p>{error}</p>}
-      {geoError && <p>{geoError}</p>}
+      <div className="relative w-[100%] justify-center flex text-2xl text-red-500 mt-2">
+        {error && <p>{error}</p>}
+        {geoError && <p>{geoError}</p>}
       </div>
       {weather.main && <WeatherDetails data={weather} />}
     </div>
